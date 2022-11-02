@@ -12,10 +12,12 @@ public class MouseController : MonoBehaviour
     public int state; // state mouse is in
     public Rigidbody2D rb; // going to need to drag mouse's rigid body in here
     public float health;
-
     public float minimumImpactVelocity; // how much relative velocity ball to mouse before takes damage
-
+    public float fleeTime; // how long the mouse will flee for
+    private float fleeTimeTimer;
+    public float checkSafetyTime; // how long the mouse will check its safety
     // Start is called before the first frame update
+    private float checkSafetyTimeTimer;
     void Start()
     {
     }
@@ -56,6 +58,12 @@ public class MouseController : MonoBehaviour
                 rb.velocity = mouseVelocity;
                 break;
             case 1: // flee (will be on a timer)
+                if (Time.time > fleeTimeTimer)
+                { // done fleeing
+                    state = 2;
+                    checkSafetyTimeTimer = Time.time + checkSafetyTime;
+                    // face opposite direction
+                }
                 if (directionRight)
                 {
                     mouseVelocity.x = runSpeed;
@@ -67,6 +75,16 @@ public class MouseController : MonoBehaviour
                 rb.velocity = mouseVelocity;
                 break;
             case 2: // check safety
+                if (Time.time > checkSafetyTime)
+                { // safe to return to roam
+                    state = 0;
+                    // picks the larger distance to travel back to
+                    if (Mathf.Abs(x1 - mousePosition.x) > Mathf.Abs(x2 - mousePosition.x)) {
+                        directionRight = false;
+                    } else {
+                        directionRight = true;
+                    }
+                }
                 break;
         }
     }
@@ -80,6 +98,7 @@ public class MouseController : MonoBehaviour
         {
             case "Cat":
                 state = 1;
+                fleeTimeTimer = Time.time + fleeTime;
                 if (rb.position.x < collision.transform.position.x)
                 { // mouse to left of cat, run left
                     directionRight = false;
@@ -95,9 +114,12 @@ public class MouseController : MonoBehaviour
                 // bc.rigidBody2D.velocity.magnitude is velocity of the yarn ball
                 // collision.relativeVelocity.magnitude is the relative vel between ball and mouse
                 // gets minimum of the two so mouse can't kill itself by running into it fastly
-                if (bc.rigidBody2D.velocity.magnitude < collision.relativeVelocity.magnitude) {
+                if (bc.rigidBody2D.velocity.magnitude < collision.relativeVelocity.magnitude)
+                {
                     impactVelocity = bc.rigidBody2D.velocity.magnitude;
-                } else {
+                }
+                else
+                {
                     impactVelocity = collision.relativeVelocity.magnitude;
                 }
                 if (impactVelocity > minimumImpactVelocity)
@@ -109,6 +131,7 @@ public class MouseController : MonoBehaviour
                         Destroy(this); // removes the behavior script
                     }
                     state = 1;
+                    fleeTimeTimer = Time.time + fleeTime;
                     if (rb.position.x < collision.transform.position.x)
                     { // mouse to left of ball, run left
                         directionRight = false;
