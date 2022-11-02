@@ -23,11 +23,11 @@ public class BallController : MonoBehaviour
 
             Vector2 mouseWorldPosition = camera.ScreenToWorldPoint((Vector2)Input.mousePosition); // mouse position in world (just for testing)
             // mouse position in world
-            Debug.Log("mouseWorldX = " + mouseWorldPosition.x +
-                ", mouseWorldY = " + mouseWorldPosition.y);
-            // ball position
-            Debug.Log("ballX = " + transform.position.x +
-                ", ballY = " + transform.position.y);
+            // Debug.Log("mouseWorldX = " + mouseWorldPosition.x +
+            //     ", mouseWorldY = " + mouseWorldPosition.y);
+            // // ball position
+            // Debug.Log("ballX = " + transform.position.x +
+            //     ", ballY = " + transform.position.y);
 
 
             rigidBody2D.AddForce(hitStrength * (mouseWorldPosition - (Vector2)transform.position).normalized, ForceMode2D.Impulse); // impulse means force applied instantly

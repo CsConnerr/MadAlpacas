@@ -1807,7 +1807,7 @@ GameObject:
   - component: {fileID: 883696993}
   m_Layer: 0
   m_Name: Yarnball
-  m_TagString: Untagged
+  m_TagString: Ball
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3702,6 +3702,7 @@ MonoBehaviour:
   state: 0
   rb: {fileID: 1809994981}
   health: 100
+  minimumImpactVelocity: 5
 --- !u!1 &1869789032
 GameObject:
   m_ObjectHideFlags: 0

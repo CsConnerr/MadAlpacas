@@ -11,8 +11,9 @@ public class MouseController : MonoBehaviour
     public bool directionRight; // direction where mouse is moving
     public int state; // state mouse is in
     public Rigidbody2D rb; // going to need to drag mouse's rigid body in here
+    public float health;
 
-    public int health;
+    public float minimumImpactVelocity; // how much relative velocity ball to mouse before takes damage
 
     // Start is called before the first frame update
     void Start()
@@ -88,15 +89,34 @@ public class MouseController : MonoBehaviour
                     directionRight = true;
                 }
                 break;
-            case "Ball": // force of ball used in calculating damage
-                state = 1;
-                if (rb.position.x < collision.transform.position.x)
-                { // mouse to left of ball, run left
-                    directionRight = false;
+            case "Ball": // force of ball used in calculating damage (also if light tap of ball don't flee or take damage)
+                BallController bc = collision.gameObject.GetComponent<BallController>();
+                float impactVelocity;
+                // bc.rigidBody2D.velocity.magnitude is velocity of the yarn ball
+                // collision.relativeVelocity.magnitude is the relative vel between ball and mouse
+                // gets minimum of the two so mouse can't kill itself by running into it fastly
+                if (bc.rigidBody2D.velocity.magnitude < collision.relativeVelocity.magnitude) {
+                    impactVelocity = bc.rigidBody2D.velocity.magnitude;
+                } else {
+                    impactVelocity = collision.relativeVelocity.magnitude;
                 }
-                else
-                { // mouse to right of ball, run right
-                    directionRight = true;
+                if (impactVelocity > minimumImpactVelocity)
+                {
+                    float hitStrength = bc.hitStrength; // gets hit strength from yarn ball
+                    health = health - hitStrength * impactVelocity;
+                    if (health <= 0)
+                    {
+                        Destroy(this); // removes the behavior script
+                    }
+                    state = 1;
+                    if (rb.position.x < collision.transform.position.x)
+                    { // mouse to left of ball, run left
+                        directionRight = false;
+                    }
+                    else
+                    { // mouse to right of ball, run right
+                        directionRight = true;
+                    }
                 }
                 break;
         }
