@@ -12,7 +12,7 @@ public class MouseController : MonoBehaviour
     public int state; // state mouse is in
     public Rigidbody2D rb; // going to need to drag mouse's rigid body in here
 
-    public Vector2 mouseXY;
+    public int health;
 
     // Start is called before the first frame update
     void Start()
@@ -22,13 +22,12 @@ public class MouseController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Vector2 mouseVelocity = rb.velocity;
+        Vector2 mousePosition = rb.position;
         switch (state)
         {
-
+            // if sees cat --> set state = 1, set direction
             case 0: // walk cycle
-                mouseXY = rb.position;
-                Vector2 mouseVelocity = rb.velocity;
-                Vector2 mousePosition = rb.position;
                 if (directionRight)
                 {
                     if (mousePosition.x >= x2)
@@ -55,9 +54,50 @@ public class MouseController : MonoBehaviour
                 }
                 rb.velocity = mouseVelocity;
                 break;
-            case 1: // flee
+            case 1: // flee (will be on a timer)
+                if (directionRight)
+                {
+                    mouseVelocity.x = runSpeed;
+                }
+                else
+                {
+                    mouseVelocity.x = -runSpeed;
+                }
+                rb.velocity = mouseVelocity;
                 break;
             case 2: // check safety
+                break;
+        }
+    }
+
+    // if collides with cat --> flee (cat walked up behind mouse)
+    // if collides with yarnball --> flee & take damage
+    // will need to set the timer here
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        switch (collision.gameObject.tag) // tags are case sensitive
+        {
+            case "Cat":
+                state = 1;
+                if (rb.position.x < collision.transform.position.x)
+                { // mouse to left of cat, run left
+                    directionRight = false;
+                }
+                else
+                { // mouse to right of cat, run right
+                    directionRight = true;
+                }
+                break;
+            case "Ball": // force of ball used in calculating damage
+                state = 1;
+                if (rb.position.x < collision.transform.position.x)
+                { // mouse to left of ball, run left
+                    directionRight = false;
+                }
+                else
+                { // mouse to right of ball, run right
+                    directionRight = true;
+                }
                 break;
         }
     }

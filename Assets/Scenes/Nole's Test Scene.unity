@@ -3694,6 +3694,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48bd14880075050488e11b46b0b3d9c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  x1: -5
+  x2: 5
+  walkSpeed: 3
+  runSpeed: 7
+  directionRight: 1
+  state: 0
+  rb: {fileID: 1809994981}
+  health: 100
 --- !u!1 &1869789032
 GameObject:
   m_ObjectHideFlags: 0
