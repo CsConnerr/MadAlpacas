@@ -3703,6 +3703,8 @@ MonoBehaviour:
   rb: {fileID: 1809994981}
   health: 100
   minimumImpactVelocity: 5
+  fleeTime: 7
+  checkSafetyTime: 3
 --- !u!1 &1869789032
 GameObject:
   m_ObjectHideFlags: 0
@@ -4474,7 +4476,7 @@ Rigidbody2D:
   m_Mass: 4
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 3
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -4493,7 +4495,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 6
-  jumpForce: 30
+  jumpForce: 60
   rb: {fileID: 2094823500}
   isGrounded: 0
 --- !u!95 &2094823502
