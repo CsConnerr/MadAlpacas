@@ -3065,6 +3065,8 @@ GameObject:
   - component: {fileID: 1525501198}
   - component: {fileID: 1525501201}
   - component: {fileID: 1525501202}
+  - component: {fileID: 1525501203}
+  - component: {fileID: 1525501204}
   m_Layer: 0
   m_Name: Dog
   m_TagString: Dog
@@ -3132,8 +3134,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1525501197}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7.33, y: -6.34, z: 0}
-  m_LocalScale: {x: 7, y: 7, z: 1}
+  m_LocalPosition: {x: 6.58, y: -5.92, z: 0}
+  m_LocalScale: {x: 2, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -3152,18 +3154,18 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.0011950545, y: 0.012663461}
+  m_Offset: {x: -0.0011950731, y: 0.012663484}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.21, y: 0.24}
+    oldSize: {x: 0.7, y: 0.8}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.21850753, y: 0.22232561}
+  m_Size: {x: 0.7392733, y: 0.7204492}
   m_EdgeRadius: 0
 --- !u!95 &1525501202
 Animator:
@@ -3185,6 +3187,48 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1525501203
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1525501197}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6b9233076fc4c04b8fedb358314f818, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerCat: {fileID: 0}
+  walkspeed: 5
+  chasespeed: 5
+  rb: {fileID: 0}
+  startingx: 0
+  patrolling: 0
+  patrolDistance: 5
+  chasingDistance: 5
+  sightDistance: 5
+--- !u!50 &1525501204
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1525501197}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &1673236826
 GameObject:
   m_ObjectHideFlags: 0
@@ -3703,6 +3747,8 @@ MonoBehaviour:
   rb: {fileID: 1809994981}
   health: 100
   minimumImpactVelocity: 5
+  fleeTime: 0
+  checkSafetyTime: 0
 --- !u!1 &1869789032
 GameObject:
   m_ObjectHideFlags: 0
