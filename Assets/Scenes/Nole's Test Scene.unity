@@ -3750,8 +3750,8 @@ MonoBehaviour:
   fleeTime: 7
   checkSafetyTime: 3
   cat: {fileID: 2094823496}
-  visionDistanceX: 5
-  visionDistanceY: 4
+  visionDistanceX: 4
+  visionDistanceY: 3
 --- !u!1 &1869789032
 GameObject:
   m_ObjectHideFlags: 0

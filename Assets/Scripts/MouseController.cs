@@ -33,12 +33,22 @@ public class MouseController : MonoBehaviour
         Vector2 mousePosition = rb.position;
         // if sees cat flee
         if (directionRight)
-        {
-
+        { // mouse facing right
+            if (cat.transform.position.x > mousePosition.x && Mathf.Abs(cat.transform.position.x - mousePosition.x) <= visionDistanceX && Mathf.Abs(cat.transform.position.y - mousePosition.y) <= visionDistanceY)
+            { // cat to the right of mouse and is inside vision box
+                state = 1;
+                fleeTimeTimer = Time.time + fleeTime;
+                directionRight = false;
+            }
         }
         else
-        {
-
+        { // mouse facing left
+            if (cat.transform.position.x < mousePosition.x && Mathf.Abs(cat.transform.position.x - mousePosition.x) <= visionDistanceX && Mathf.Abs(cat.transform.position.y - mousePosition.y) <= visionDistanceY)
+            { // cat to the left of mouse and is inside vision box
+                state = 1;
+                fleeTimeTimer = Time.time + fleeTime;
+                directionRight = true;
+            }
         }
 
         switch (state)
@@ -143,7 +153,9 @@ public class MouseController : MonoBehaviour
                     float hitStrength = bc.hitStrength; // gets hit strength from yarn ball
                     health = health - hitStrength * impactVelocity;
                     if (health <= 0)
-                    {
+                    { // dead mouse 5
+                        SpriteRenderer m_SpriteRenderer = GetComponent<SpriteRenderer>();
+                        m_SpriteRenderer.color = Color.black;
                         Destroy(this); // removes the behavior script
                     }
                     state = 1;
