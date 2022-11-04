@@ -2423,7 +2423,7 @@ GameObject:
   - component: {fileID: 1148819863}
   m_Layer: 0
   m_Name: Image
-  m_TagString: Untagged
+  m_TagString: Ball
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3228,7 +3228,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!1 &1673236826
 GameObject:
   m_ObjectHideFlags: 0
@@ -3607,7 +3607,7 @@ GameObject:
   - component: {fileID: 1809994984}
   m_Layer: 0
   m_Name: Mouse
-  m_TagString: Untagged
+  m_TagString: Mouse
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3658,7 +3658,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!212 &1809994982
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3747,6 +3747,11 @@ MonoBehaviour:
   rb: {fileID: 1809994981}
   health: 100
   minimumImpactVelocity: 5
+  fleeTime: 7
+  checkSafetyTime: 3
+  cat: {fileID: 2094823496}
+  visionDistanceX: 5
+  visionDistanceY: 4
 --- !u!1 &1869789032
 GameObject:
   m_ObjectHideFlags: 0

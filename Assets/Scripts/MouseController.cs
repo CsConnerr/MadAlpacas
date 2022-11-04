@@ -18,6 +18,10 @@ public class MouseController : MonoBehaviour
     public float checkSafetyTime; // how long the mouse will check its safety
     // Start is called before the first frame update
     private float checkSafetyTimeTimer;
+
+    public GameObject cat; // used for the vision
+    public float visionDistanceX; // used for how far in x mouse can see
+    public float visionDistanceY; // used for how far in y mouse can see
     void Start()
     {
     }
@@ -27,9 +31,18 @@ public class MouseController : MonoBehaviour
     {
         Vector2 mouseVelocity = rb.velocity;
         Vector2 mousePosition = rb.position;
+        // if sees cat flee
+        if (directionRight)
+        {
+
+        }
+        else
+        {
+
+        }
+
         switch (state)
         {
-            // if sees cat --> set state = 1, set direction
             case 0: // walk cycle
                 if (directionRight)
                 {
@@ -79,9 +92,12 @@ public class MouseController : MonoBehaviour
                 { // safe to return to roam
                     state = 0;
                     // picks the larger distance to travel back to
-                    if (Mathf.Abs(x1 - mousePosition.x) > Mathf.Abs(x2 - mousePosition.x)) {
+                    if (Mathf.Abs(x1 - mousePosition.x) > Mathf.Abs(x2 - mousePosition.x))
+                    {
                         directionRight = false;
-                    } else {
+                    }
+                    else
+                    {
                         directionRight = true;
                     }
                 }
