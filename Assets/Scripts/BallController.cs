@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class BallController : MonoBehaviour
 {
@@ -59,6 +60,7 @@ public class BallController : MonoBehaviour
             if (rigidBody2D.velocity.y < 0)
             {
                 Debug.Log("Hoop collision: Next level since you entered from the top. Good boy");
+                SceneManager.LoadScene(SceneManager.GetActiveScene().name); // restarts
             }
             else
             { // can remove this else statement, just showing that the ball came from the bottom

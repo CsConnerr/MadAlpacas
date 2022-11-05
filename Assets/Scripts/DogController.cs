@@ -36,6 +36,7 @@ public class DogController : MonoBehaviour
     private float health;
     public float minimumImpactVelocity; // how much relative velocity ball to mouse before takes damage
     public HealthBarController healthBar;
+
     void Start()
     {
         health = maxHealth;
@@ -141,13 +142,13 @@ public class DogController : MonoBehaviour
             {
                 walkspeed = -200f;
                 sprt.flipX = true;
-                Debug.Log(rb.velocity.x);
+                // Debug.Log(rb.velocity.x);
             }
             if (currentx <= patrolLeft)
             {
                 walkspeed = 200f;
                 sprt.flipX = false;
-                Debug.Log(rb.velocity.x);
+                // Debug.Log(rb.velocity.x);
             }
 
             speed = walkspeed;
@@ -159,14 +160,14 @@ public class DogController : MonoBehaviour
                 speed = -200f;
                 sprt.flipX = true;
                 patrolling = true;
-                Debug.Log(rb.velocity.x);
+                // Debug.Log(rb.velocity.x);
             }
             else if (currentx <= chaseLeft)
             {
                 speed = 200f;
                 sprt.flipX = false;
                 patrolling = true;
-                Debug.Log(rb.velocity.x);
+                // Debug.Log(rb.velocity.x);
             }
             else
                 speed = chasespeed;
@@ -214,7 +215,7 @@ public class DogController : MonoBehaviour
         switch (collision.gameObject.tag)
         {
             case "Cat":
-                Debug.Log("caught");
+                // Debug.Log("caught");
                 break;
             // case "Ground": // necessary?
             //     break;
@@ -222,7 +223,7 @@ public class DogController : MonoBehaviour
                 speed = -speed;
                 break;
             case "Ball":
-            BallController bc = collision.gameObject.GetComponent<BallController>();
+                BallController bc = collision.gameObject.GetComponent<BallController>();
                 float impactVelocity;
                 // bc.rigidBody2D.velocity.magnitude is velocity of the yarn ball
                 // collision.relativeVelocity.magnitude is the relative vel between ball and mouse
@@ -242,13 +243,12 @@ public class DogController : MonoBehaviour
                     healthBar.setHealth(health, maxHealth);
                     if (health <= 0)
                     {
-                        SpriteRenderer m_SpriteRenderer = GetComponent<SpriteRenderer>();
-                        m_SpriteRenderer.color = Color.black;
-                        Destroy(this); // removes the behavior script
+                        Destroy(this.gameObject.GetComponentInParent<DogController>().gameObject); // removes dog
                     }
                 }
                 break;
         }
 
     }
+
 }
