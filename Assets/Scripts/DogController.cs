@@ -35,9 +35,12 @@ public class DogController : MonoBehaviour
     public float maxHealth;
     private float health;
     public float minimumImpactVelocity; // how much relative velocity ball to mouse before takes damage
+    public HealthBarController healthBar;
     void Start()
     {
         health = maxHealth;
+        healthBar.setHealth(health, maxHealth);
+
         try
         {
             playerCat = GameObject.FindGameObjectWithTag("Cat");
@@ -236,6 +239,7 @@ public class DogController : MonoBehaviour
                 {
                     float hitStrength = bc.hitStrength; // gets hit strength from yarn ball
                     health = health - hitStrength * impactVelocity;
+                    healthBar.setHealth(health, maxHealth);
                     if (health <= 0)
                     {
                         SpriteRenderer m_SpriteRenderer = GetComponent<SpriteRenderer>();

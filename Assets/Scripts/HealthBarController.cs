@@ -10,13 +10,17 @@ public class HealthBarController : MonoBehaviour
     public Color high;
     public Vector3 offset; // used because not all animals have the same height
     // Start is called before the first frame update
-    public void setHealth(float health, float maxHealth) {
+    public void setHealth(float health, float maxHealth)
+    { // need to set at start of animal controller and whenever an animal takes damage
+        if (health <= 0)
+        {
+            Destroy(this.gameObject.GetComponentInParent<HealthBarController>().gameObject); // removes the health bar after no more health
+        }
         slider.gameObject.SetActive(health < maxHealth);
         slider.value = health;
         slider.maxValue = maxHealth;
 
         slider.fillRect.GetComponentInChildren<Image>().color = Color.Lerp(low, high, slider.normalizedValue);
-        Debug.Log(slider.value + " " + slider.maxValue);
     }
     // Update is called once per frame
     void Update()

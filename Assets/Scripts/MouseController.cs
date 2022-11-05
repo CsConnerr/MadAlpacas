@@ -23,11 +23,11 @@ public class MouseController : MonoBehaviour
     public GameObject cat; // used for the vision
     public float visionDistanceX; // used for how far in x mouse can see
     public float visionDistanceY; // used for how far in y mouse can see
-    public HealthBarController healthbar;
+    public HealthBarController healthBar;
     void Start()
     {
         health = maxHealth;
-        healthbar.setHealth(health, maxHealth);
+        healthBar.setHealth(health, maxHealth);
     }
 
     // Update is called once per frame
@@ -156,7 +156,7 @@ public class MouseController : MonoBehaviour
                 {
                     float hitStrength = bc.hitStrength; // gets hit strength from yarn ball
                     health = health - hitStrength * impactVelocity;
-                    healthbar.setHealth(health, maxHealth);
+                    healthBar.setHealth(health, maxHealth);
                     if (health <= 0)
                     { // dead mouse 5
                         SpriteRenderer m_SpriteRenderer = GetComponent<SpriteRenderer>();
