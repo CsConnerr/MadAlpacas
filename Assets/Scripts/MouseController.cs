@@ -11,7 +11,8 @@ public class MouseController : MonoBehaviour
     public bool directionRight; // direction where mouse is moving
     public int state; // state mouse is in
     public Rigidbody2D rb; // going to need to drag mouse's rigid body in here
-    public float health;
+    public float maxHealth;
+    private float health;
     public float minimumImpactVelocity; // how much relative velocity ball to mouse before takes damage
     public float fleeTime; // how long the mouse will flee for
     private float fleeTimeTimer;
@@ -22,8 +23,11 @@ public class MouseController : MonoBehaviour
     public GameObject cat; // used for the vision
     public float visionDistanceX; // used for how far in x mouse can see
     public float visionDistanceY; // used for how far in y mouse can see
+    public HealthBarController healthbar;
     void Start()
     {
+        health = maxHealth;
+        healthbar.setHealth(health, maxHealth);
     }
 
     // Update is called once per frame
@@ -152,6 +156,7 @@ public class MouseController : MonoBehaviour
                 {
                     float hitStrength = bc.hitStrength; // gets hit strength from yarn ball
                     health = health - hitStrength * impactVelocity;
+                    healthbar.setHealth(health, maxHealth);
                     if (health <= 0)
                     { // dead mouse 5
                         SpriteRenderer m_SpriteRenderer = GetComponent<SpriteRenderer>();
