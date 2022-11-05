@@ -11,15 +11,23 @@ public class MouseController : MonoBehaviour
     public bool directionRight; // direction where mouse is moving
     public int state; // state mouse is in
     public Rigidbody2D rb; // going to need to drag mouse's rigid body in here
-    public float health;
+    public float maxHealth;
+    private float health;
     public float minimumImpactVelocity; // how much relative velocity ball to mouse before takes damage
     public float fleeTime; // how long the mouse will flee for
     private float fleeTimeTimer;
     public float checkSafetyTime; // how long the mouse will check its safety
     // Start is called before the first frame update
     private float checkSafetyTimeTimer;
+
+    public GameObject cat; // used for the vision
+    public float visionDistanceX; // used for how far in x mouse can see
+    public float visionDistanceY; // used for how far in y mouse can see
+    public HealthBarController healthBar;
     void Start()
     {
+        health = maxHealth;
+        healthBar.setHealth(health, maxHealth);
     }
 
     // Update is called once per frame
@@ -27,9 +35,28 @@ public class MouseController : MonoBehaviour
     {
         Vector2 mouseVelocity = rb.velocity;
         Vector2 mousePosition = rb.position;
+        // if sees cat flee
+        if (directionRight)
+        { // mouse facing right
+            if (cat.transform.position.x > mousePosition.x && Mathf.Abs(cat.transform.position.x - mousePosition.x) <= visionDistanceX && Mathf.Abs(cat.transform.position.y - mousePosition.y) <= visionDistanceY)
+            { // cat to the right of mouse and is inside vision box
+                state = 1;
+                fleeTimeTimer = Time.time + fleeTime;
+                directionRight = false;
+            }
+        }
+        else
+        { // mouse facing left
+            if (cat.transform.position.x < mousePosition.x && Mathf.Abs(cat.transform.position.x - mousePosition.x) <= visionDistanceX && Mathf.Abs(cat.transform.position.y - mousePosition.y) <= visionDistanceY)
+            { // cat to the left of mouse and is inside vision box
+                state = 1;
+                fleeTimeTimer = Time.time + fleeTime;
+                directionRight = true;
+            }
+        }
+
         switch (state)
         {
-            // if sees cat --> set state = 1, set direction
             case 0: // walk cycle
                 if (directionRight)
                 {
@@ -79,9 +106,12 @@ public class MouseController : MonoBehaviour
                 { // safe to return to roam
                     state = 0;
                     // picks the larger distance to travel back to
-                    if (Mathf.Abs(x1 - mousePosition.x) > Mathf.Abs(x2 - mousePosition.x)) {
+                    if (Mathf.Abs(x1 - mousePosition.x) > Mathf.Abs(x2 - mousePosition.x))
+                    {
                         directionRight = false;
-                    } else {
+                    }
+                    else
+                    {
                         directionRight = true;
                     }
                 }
@@ -126,8 +156,11 @@ public class MouseController : MonoBehaviour
                 {
                     float hitStrength = bc.hitStrength; // gets hit strength from yarn ball
                     health = health - hitStrength * impactVelocity;
+                    healthBar.setHealth(health, maxHealth);
                     if (health <= 0)
-                    {
+                    { // dead mouse 5
+                        SpriteRenderer m_SpriteRenderer = GetComponent<SpriteRenderer>();
+                        m_SpriteRenderer.color = Color.black;
                         Destroy(this); // removes the behavior script
                     }
                     state = 1;

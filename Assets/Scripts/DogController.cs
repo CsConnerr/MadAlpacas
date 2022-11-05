@@ -31,8 +31,17 @@ public class DogController : MonoBehaviour
     //sight distance
     public float sightDistance;
     // Start is called before the first frame update
+
+    public float maxHealth;
+    private float health;
+    public float minimumImpactVelocity; // how much relative velocity ball to mouse before takes damage
+    public HealthBarController healthBar;
+
     void Start()
     {
+        health = maxHealth;
+        healthBar.setHealth(health, maxHealth);
+
         try
         {
             playerCat = GameObject.FindGameObjectWithTag("Cat");
@@ -41,20 +50,20 @@ public class DogController : MonoBehaviour
         {
             Debug.Log(ex.Message);
         }
-        
+
 
         rb = GetComponent<Rigidbody2D>();
         sprt = GetComponent<SpriteRenderer>();
-        anim=GetComponent<Animator>();
+        anim = GetComponent<Animator>();
         walkspeed = 200f;
         chasespeed = 400f;
-        startingx=rb.GetComponent<Transform>().position.x;
-        patrolDistance=3.5f;
+        startingx = rb.GetComponent<Transform>().position.x;
+        patrolDistance = 3.5f;
         chasingDistance = 7f;
-        sightDistance=3.5f;
+        sightDistance = 3.5f;
         //patrol true=patrol, patrol false=chasing
         patrolling = true;
-        
+
         sprt.flipX = false;
         patrolRight = startingx + patrolDistance;
         patrolLeft = startingx - patrolDistance;
@@ -67,7 +76,7 @@ public class DogController : MonoBehaviour
     {
         //0.check if on the same y
         bool isOnSameY = false;
-        if (Math.Abs(Math.Abs(playerCat.transform.position.y) - Math.Abs(rb.position.y))>=2f)
+        if (Math.Abs(Math.Abs(playerCat.transform.position.y) - Math.Abs(rb.position.y)) >= 2f)
             isOnSameY = false;
         else
             isOnSameY = true;
@@ -119,13 +128,13 @@ public class DogController : MonoBehaviour
     void FixedUpdate()
     {
         float currentx;
-        currentx= rb.GetComponent<Transform>().position.x;
+        currentx = rb.GetComponent<Transform>().position.x;
 
-        
+
         checkChase(currentx);
 
-        
-            //patrolling
+
+        //patrolling
         if (patrolling)
         {
             //check for distance
@@ -133,13 +142,13 @@ public class DogController : MonoBehaviour
             {
                 walkspeed = -200f;
                 sprt.flipX = true;
-                Debug.Log(rb.velocity.x);
+                // Debug.Log(rb.velocity.x);
             }
             if (currentx <= patrolLeft)
             {
                 walkspeed = 200f;
                 sprt.flipX = false;
-                Debug.Log(rb.velocity.x);
+                // Debug.Log(rb.velocity.x);
             }
 
             speed = walkspeed;
@@ -148,24 +157,24 @@ public class DogController : MonoBehaviour
         {
             if (currentx >= chaseRight)
             {
-                speed =-200f;
+                speed = -200f;
                 sprt.flipX = true;
                 patrolling = true;
-                Debug.Log(rb.velocity.x);
+                // Debug.Log(rb.velocity.x);
             }
             else if (currentx <= chaseLeft)
             {
                 speed = 200f;
                 sprt.flipX = false;
                 patrolling = true;
-                Debug.Log(rb.velocity.x);
+                // Debug.Log(rb.velocity.x);
             }
             else
                 speed = chasespeed;
         }
-        
 
-        
+
+
 
         //change velocity
         Vector2 v2 = new Vector2(speed * Time.fixedDeltaTime, rb.velocity.y);
@@ -180,29 +189,66 @@ public class DogController : MonoBehaviour
             aState = animationState.patrolling;
         else
             aState = animationState.chasing;
-        
+
         anim.SetInteger("AnimationState", (int)aState);
     }
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Cat")
+        // if (collision.gameObject.tag == "Cat")
+        // {
+        //     Debug.Log("caught");
+        // }
+
+        // if (collision.gameObject.tag == "Ground")
+        // {
+        //     speed = -speed;
+        // }
+        // if (collision.gameObject.tag == "wall")
+        // {
+        //     speed = -speed;
+        // }
+        // if (collision.gameObject.tag == "yarnball")
+        // {
+        //     Debug.Log("hit by yarnball");
+        // }
+
+        switch (collision.gameObject.tag)
         {
-            Debug.Log("caught");
-        }
-       
-        if (collision.gameObject.tag == "Ground")
-        {
-            speed = -speed;
-        }
-        if (collision.gameObject.tag == "wall")
-        {
-            speed = -speed;
-        }
-        if (collision.gameObject.tag == "yarnball")
-        {
-            Debug.Log("hit by yarnball");
-            
+            case "Cat":
+                // Debug.Log("caught");
+                break;
+            // case "Ground": // necessary?
+            //     break;
+            case "Wall":
+                speed = -speed;
+                break;
+            case "Ball":
+                BallController bc = collision.gameObject.GetComponent<BallController>();
+                float impactVelocity;
+                // bc.rigidBody2D.velocity.magnitude is velocity of the yarn ball
+                // collision.relativeVelocity.magnitude is the relative vel between ball and mouse
+                // gets minimum of the two so mouse can't kill itself by running into it fastly
+                if (bc.rigidBody2D.velocity.magnitude < collision.relativeVelocity.magnitude)
+                {
+                    impactVelocity = bc.rigidBody2D.velocity.magnitude;
+                }
+                else
+                {
+                    impactVelocity = collision.relativeVelocity.magnitude;
+                }
+                if (impactVelocity > minimumImpactVelocity)
+                {
+                    float hitStrength = bc.hitStrength; // gets hit strength from yarn ball
+                    health = health - hitStrength * impactVelocity;
+                    healthBar.setHealth(health, maxHealth);
+                    if (health <= 0)
+                    {
+                        Destroy(this.gameObject.GetComponentInParent<DogController>().gameObject); // removes dog
+                    }
+                }
+                break;
         }
 
     }
+
 }

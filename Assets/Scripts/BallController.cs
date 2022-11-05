@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class BallController : MonoBehaviour
 {
@@ -35,20 +36,21 @@ public class BallController : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        switch (collision.gameObject.tag) // tags are case sensitive
-        {
-            case "Dog":
-                // damage the dog
-                Debug.Log("Dog collision: Damage dog");
-                break;
-            case "Mouse":
-                // kill the mouse
-                Debug.Log("Mouse collision: Kill mouse");
-                break;
-        }
-    }
+    // damage is now being applied in the dog/mouse scripts
+    // private void OnCollisionEnter2D(Collision2D collision)
+    // {
+    //     switch (collision.gameObject.tag) // tags are case sensitive
+    //     {
+    //         case "Dog":
+    //             // damage the dog
+    //             Debug.Log("Dog collision: Damage dog");
+    //             break;
+    //         case "Mouse":
+    //             // kill the mouse
+    //             Debug.Log("Mouse collision: Kill mouse");
+    //             break;
+    //     }
+    // }
 
     private void OnTriggerEnter2D(Collider2D collider)
     {
@@ -58,6 +60,7 @@ public class BallController : MonoBehaviour
             if (rigidBody2D.velocity.y < 0)
             {
                 Debug.Log("Hoop collision: Next level since you entered from the top. Good boy");
+                SceneManager.LoadScene(SceneManager.GetActiveScene().name); // restarts
             }
             else
             { // can remove this else statement, just showing that the ball came from the bottom
