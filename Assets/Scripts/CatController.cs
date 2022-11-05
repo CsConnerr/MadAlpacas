@@ -38,6 +38,10 @@ public class CatController : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        if (Input.GetKey("r"))
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name); // restarts
+        }
         if (canMove)
         {
             Vector2 v = rb.velocity;
