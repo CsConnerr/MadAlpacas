@@ -10,6 +10,7 @@ TagManager:
   - Cat
   - Mouse
   - Ball
+  - Music
   layers:
   - Default
   - TransparentFX
