@@ -117,7 +117,12 @@ public class MouseController : MonoBehaviour
                 }
                 break;
         }
+        /* if (Input.GetAxis("Horizontal") > 0.01f)
+                transform.localScale = new Vector3(0.3, 0.3, 50);
+            else if (Input.GetAxis("Horizontal") < -0.01f)
+                transform.localScale = new Vector3(-0.3, 0.3, 50); */
     }
+    
 
     // if collides with cat --> flee (cat walked up behind mouse)
     // if collides with yarnball --> flee & take damage
