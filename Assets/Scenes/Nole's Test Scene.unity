@@ -5985,6 +5985,10 @@ MonoBehaviour:
   dogKnockbackForce: 60
   healthFromMouse: 90
   knockBackTime: 0.5
+  catHurtMeows:
+  - {fileID: 8300000, guid: b1f7fcf7c68b9f14e9b6a6bfda7368ff, type: 3}
+  - {fileID: 8300000, guid: 9a72f3c0876312241a57baf4ca2d4624, type: 3}
+  - {fileID: 8300000, guid: 6e81dead85261ba459b1faaf83765d6c, type: 3}
 --- !u!95 &2094823502
 Animator:
   serializedVersion: 4

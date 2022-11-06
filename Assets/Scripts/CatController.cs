@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Audio;
 
 public class CatController : MonoBehaviour
 {
@@ -25,6 +26,10 @@ public class CatController : MonoBehaviour
     public float knockBackTime;
 
     private float knockBackTimer;
+
+    public AudioClip[] catHurtMeows;
+
+    public AudioSource audioSource;
 
     // Start is called before the first frame update
     void Start()
@@ -85,6 +90,13 @@ public class CatController : MonoBehaviour
         }
     }
 
+    void playCatHurtMeow()
+    {
+        AudioClip catHurtMeow = catHurtMeows[Random.Range(0, catHurtMeows.Length)];
+        audioSource.clip = catHurtMeow;
+        audioSource.Play();
+    }
+
 
     void OnCollisionEnter2D(Collision2D collision)
     {
@@ -108,6 +120,7 @@ public class CatController : MonoBehaviour
                 break;
             case "Dog":
                 health -= damageFromDog;
+                playCatHurtMeow();
                 if (health <= 0)
                 {
                     SceneManager.LoadScene(SceneManager.GetActiveScene().name); // restarts
