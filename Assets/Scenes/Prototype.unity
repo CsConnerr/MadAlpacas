@@ -1813,7 +1813,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 7.5
+  orthographic size: 8.443567
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -1837,7 +1837,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalPosition: {x: 0, y: -0.95, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5233,14 +5233,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   x1: -5
   x2: 5
-  walkSpeed: 3
-  runSpeed: 7
+  walkSpeed: 2
+  runSpeed: 5
   directionRight: 1
   state: 0
   rb: {fileID: 1809994981}
   maxHealth: 100
   minimumImpactVelocity: 5
-  fleeTime: 7
+  fleeTime: 5
   checkSafetyTime: 3
   cat: {fileID: 2094823496}
   visionDistanceX: 4
