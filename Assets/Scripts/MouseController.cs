@@ -19,7 +19,7 @@ public class MouseController : MonoBehaviour
     public float checkSafetyTime; // how long the mouse will check its safety
     // Start is called before the first frame update
     private float checkSafetyTimeTimer;
-
+private SpriteRenderer sprt;
     public GameObject cat; // used for the vision
     public float visionDistanceX; // used for how far in x mouse can see
     public float visionDistanceY; // used for how far in y mouse can see
@@ -43,6 +43,8 @@ public class MouseController : MonoBehaviour
                 state = 1;
                 fleeTimeTimer = Time.time + fleeTime;
                 directionRight = false;
+                sprt.flipX = false;
+
             }
         }
         else
@@ -51,7 +53,9 @@ public class MouseController : MonoBehaviour
             { // cat to the left of mouse and is inside vision box
                 state = 1;
                 fleeTimeTimer = Time.time + fleeTime;
-                directionRight = true;
+                directionRight = true;       
+                 sprt.flipX = true;
+
             }
         }
 
@@ -63,6 +67,7 @@ public class MouseController : MonoBehaviour
                     if (mousePosition.x >= x2)
                     {
                         directionRight = false;
+                        sprt.flipX = false;
                         mouseVelocity.x = -walkSpeed;
                     }
                     else
@@ -75,6 +80,7 @@ public class MouseController : MonoBehaviour
                     if (mousePosition.x <= x1)
                     {
                         directionRight = true;
+                        sprt.flipX = true;
                         mouseVelocity.x = walkSpeed;
                     }
                     else
@@ -109,18 +115,16 @@ public class MouseController : MonoBehaviour
                     if (Mathf.Abs(x1 - mousePosition.x) > Mathf.Abs(x2 - mousePosition.x))
                     {
                         directionRight = false;
+                        sprt.flipX = false;
                     }
                     else
                     {
                         directionRight = true;
+                        sprt.flipX = true;
                     }
                 }
                 break;
         }
-        /* if (Input.GetAxis("Horizontal") > 0.01f)
-                transform.localScale = new Vector3(0.3, 0.3, 50);
-            else if (Input.GetAxis("Horizontal") < -0.01f)
-                transform.localScale = new Vector3(-0.3, 0.3, 50); */
     }
     
 
