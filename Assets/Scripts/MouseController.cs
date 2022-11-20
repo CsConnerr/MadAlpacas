@@ -19,15 +19,21 @@ public class MouseController : MonoBehaviour
     public float checkSafetyTime; // how long the mouse will check its safety
     // Start is called before the first frame update
     private float checkSafetyTimeTimer;
-private SpriteRenderer sprt;
+    private SpriteRenderer sprt;
     public GameObject cat; // used for the vision
     public float visionDistanceX; // used for how far in x mouse can see
     public float visionDistanceY; // used for how far in y mouse can see
     public HealthBarController healthBar;
     void Start()
     {
+
         health = maxHealth;
         healthBar.setHealth(health, maxHealth);
+        sprt = GetComponent<SpriteRenderer>();
+        if (directionRight)
+        {
+            sprt.flipX = true;
+        }
     }
 
     // Update is called once per frame
@@ -53,8 +59,8 @@ private SpriteRenderer sprt;
             { // cat to the left of mouse and is inside vision box
                 state = 1;
                 fleeTimeTimer = Time.time + fleeTime;
-                directionRight = true;       
-                 sprt.flipX = true;
+                directionRight = true;
+                sprt.flipX = true;
 
             }
         }
@@ -126,7 +132,7 @@ private SpriteRenderer sprt;
                 break;
         }
     }
-    
+
 
     // if collides with cat --> flee (cat walked up behind mouse)
     // if collides with yarnball --> flee & take damage

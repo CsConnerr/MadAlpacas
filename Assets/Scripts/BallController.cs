@@ -10,6 +10,8 @@ public class BallController : MonoBehaviour
     public Rigidbody2D rigidBody2D; // reference the rigid body
     public float hitStrength; // maybe make it so cat can charge up hit (holding its arm all the way back)
 
+    public int nextLevel;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -60,7 +62,7 @@ public class BallController : MonoBehaviour
             if (rigidBody2D.velocity.y < 0)
             {
                 Debug.Log("Hoop collision: Next level since you entered from the top. Good boy");
-                SceneManager.LoadScene(SceneManager.GetActiveScene().name); // restarts
+                SceneManager.LoadScene(nextLevel); // restarts
             }
             else
             { // can remove this else statement, just showing that the ball came from the bottom

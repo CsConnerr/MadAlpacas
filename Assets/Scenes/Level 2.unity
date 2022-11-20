@@ -4438,7 +4438,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!82 &1572930412
 AudioSource:
   m_ObjectHideFlags: 0
@@ -5152,6 +5152,7 @@ MonoBehaviour:
   camera: {fileID: 0}
   rigidBody2D: {fileID: 1648194303}
   hitStrength: 5
+  nextLevel: 0
 --- !u!50 &1648194303
 Rigidbody2D:
   serializedVersion: 4
