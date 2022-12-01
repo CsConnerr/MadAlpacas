@@ -37,8 +37,17 @@ public class DogController : MonoBehaviour
     public float minimumImpactVelocity; // how much relative velocity ball to mouse before takes damage
     public HealthBarController healthBar;
 
+    public bool isRespawnable;
+    public GameObject dogSpawner;
+    public float respawnTime;
+    private float startingPositionX;
+    private float startingPositionY;
+
     void Start()
     {
+        startingPositionX = this.transform.position.x;
+        startingPositionY = this.transform.position.y;
+
         health = maxHealth;
         healthBar.setHealth(health, maxHealth);
 
@@ -243,7 +252,17 @@ public class DogController : MonoBehaviour
                     healthBar.setHealth(health, maxHealth);
                     if (health <= 0)
                     {
-                        Destroy(this.gameObject.GetComponentInParent<DogController>().gameObject); // removes dog
+                        if (isRespawnable)
+                        {
+                            
+                            // Debug.Log("Respawning dog");
+                            this.gameObject.SetActive(false);
+                            Invoke("respawnDog", respawnTime);
+                        }
+                        else
+                        {
+                            Destroy(this.gameObject.GetComponentInParent<DogController>().gameObject); // removes dog
+                        }
                     }
                 }
                 break;
@@ -251,4 +270,11 @@ public class DogController : MonoBehaviour
 
     }
 
+    private void respawnDog()
+    {
+        health = maxHealth;
+        this.gameObject.transform.position = new Vector3(startingPositionX, startingPositionY, 0f);
+        healthBar.setHealth(health, maxHealth); // reset health bar
+        this.gameObject.SetActive(true);
+    }
 }

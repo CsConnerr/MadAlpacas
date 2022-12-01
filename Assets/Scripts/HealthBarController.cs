@@ -12,10 +12,10 @@ public class HealthBarController : MonoBehaviour
     // Start is called before the first frame update
     public void setHealth(float health, float maxHealth)
     { // need to set at start of animal controller and whenever an animal takes damage
-        if (health <= 0)
-        {
-            Destroy(this.gameObject.GetComponentInParent<HealthBarController>().gameObject); // removes the health bar after no more health
-        }
+        // if (health <= 0)
+        // {
+        //     Destroy(this.gameObject.GetComponentInParent<HealthBarController>().gameObject); // removes the health bar after no more health
+        // }
         slider.gameObject.SetActive(health < maxHealth);
         slider.value = health;
         slider.maxValue = maxHealth;
