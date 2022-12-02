@@ -38,7 +38,6 @@ public class DogController : MonoBehaviour
     public HealthBarController healthBar;
 
     public bool isRespawnable;
-    public GameObject dogSpawner;
     public float respawnTime;
     private float startingPositionX;
     private float startingPositionY;
