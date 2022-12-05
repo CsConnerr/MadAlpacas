@@ -2865,6 +2865,7 @@ MonoBehaviour:
   camera: {fileID: 519420031}
   rigidBody2D: {fileID: 883696989}
   hitStrength: 5
+  nextLevel: 0
 --- !u!1 &889471592
 GameObject:
   m_ObjectHideFlags: 0
@@ -4539,6 +4540,8 @@ MonoBehaviour:
   maxHealth: 150
   minimumImpactVelocity: 5
   healthBar: {fileID: 2136244977}
+  isRespawnable: 0
+  respawnTime: 0
 --- !u!50 &1525501204
 Rigidbody2D:
   serializedVersion: 4

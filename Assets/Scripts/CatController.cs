@@ -14,6 +14,7 @@ public class CatController : MonoBehaviour
     // private Animator anim;
     public float maxHealth;
     private float health;
+    private Animator anim;
 
     public HealthBarController healthBar;
 
@@ -38,6 +39,7 @@ public class CatController : MonoBehaviour
         canMove = true;
         health = maxHealth;
         healthBar.setHealth(health, maxHealth);
+        anim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -65,6 +67,15 @@ public class CatController : MonoBehaviour
             }
 
             rb.velocity = v; // temp variable needed because can't modify rb.velocity.x directly
+
+
+    anim.SetBool("Run", v.x != 0);  // if v.x is 0, then Run is false, otherwise Run is true
+
+/* if (Input.GetKeyDown("space") && isGrounded)
+            {
+                rb.AddForce(new Vector2(0, jumpForce));
+            }
+            anim.SetTrigger("Jump1"); */
 
             // this is supposed to be for animation transitioj but IDK
             /* if(Input.GetAxis("Horizontal") != 0)
@@ -130,6 +141,7 @@ public class CatController : MonoBehaviour
                 StartCoroutine(applyKnockback(collision.gameObject.GetComponent<Rigidbody2D>().position));
                 break;
         }
+
     }
 
 
