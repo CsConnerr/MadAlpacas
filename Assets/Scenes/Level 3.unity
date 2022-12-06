@@ -2404,7 +2404,7 @@ MonoBehaviour:
   rb: {fileID: 0}
   startingx: 0
   patrolling: 0
-  patrolDistance: 2
+  patrolDistance: 1
   chasingDistance: 5
   sightDistance: 5
   maxHealth: 150
@@ -3177,7 +3177,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.31309214}
+  m_Offset: {x: 0, y: 0.45}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -3188,7 +3188,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.94, y: 0.34376615}
+  m_Size: {x: 1.94, y: 0.03}
   m_EdgeRadius: 0
 --- !u!212 &1058780631
 SpriteRenderer:
@@ -3580,7 +3580,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1124101712}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -5765,7 +5765,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 188d3fdabe9a9114db83a341b5a833a2, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0

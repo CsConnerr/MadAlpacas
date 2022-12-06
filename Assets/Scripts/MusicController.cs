@@ -38,8 +38,9 @@ public class MusicController : MonoBehaviour
     void Update()
     {
         if (!audioSource.isPlaying)
-        {
+        {           
             index = (index + 1) % musicClips.Length;
+            Debug.Log("Next song " + index + 1);
             audioSource.clip = musicClips[index];
             audioSource.Play();
         }

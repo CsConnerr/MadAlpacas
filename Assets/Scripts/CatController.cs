@@ -155,7 +155,7 @@ public class CatController : MonoBehaviour
         {
             dogCollisionDirection.y = .1f;
         }
-        Debug.Log(dogKnockbackForce * dogCollisionDirection);
+        // Debug.Log(dogKnockbackForce * dogCollisionDirection);
         rb.AddForce(dogKnockbackForce * dogCollisionDirection, ForceMode2D.Impulse);
         yield return new WaitForSeconds(knockBackTime);
         GetComponent<CatController>().canMove = true;

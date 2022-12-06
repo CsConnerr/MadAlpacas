@@ -66,7 +66,7 @@ public class DogController : MonoBehaviour
         walkspeed = 200f;
         chasespeed = 400f;
         startingx = rb.GetComponent<Transform>().position.x;
-        patrolDistance = 3.5f;
+        // patrolDistance = 3.5f;
         chasingDistance = 7f;
         sightDistance = 3.5f;
         //patrol true=patrol, patrol false=chasing
