@@ -3,41 +3,30 @@
 // three minute countdown timer in unity 2d when timer reaches 0, 
 //restart the scene
 
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class Timer : MonoBehaviour
 {
     public float timeRemaining = 180;
-    public bool timerIsRunning = false;
-    public Text timeText;
+    public TextMeshProUGUI timeText;
 
-    void Start()
-    {
-        // Starts the timer automatically
-        timerIsRunning = true;
-    }
-
+   
     void Update()
     {
-        if (timerIsRunning)
+
+        if (timeRemaining > 0)
         {
-            if (timeRemaining > 0)
-            {
-                timeRemaining -= Time.deltaTime;
-                DisplayTime(timeRemaining);
-            }
-            else
-            {
-                Debug.Log("Time has run out!");
-                timeRemaining = 0;
-                timerIsRunning = false;
-                SceneManager.LoadScene(SceneManager.GetActiveScene().name); // restarts
-            }
+            timeRemaining -= Time.deltaTime;
+            DisplayTime(timeRemaining);
         }
+        else
+        {
+            Debug.Log("Time has run out!");
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name); // restarts
+        }
+
     }
 
     void DisplayTime(float timeToDisplay)

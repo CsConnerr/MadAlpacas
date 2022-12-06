@@ -8,12 +8,15 @@ public class MusicController : MonoBehaviour
     public AudioClip[] musicClips;
 
     static MusicController instance = null;
+    private int index; // index of current song
+
 
     // Start is called before the first frame update
     void Start()
     {
 
-        AudioClip musicClip = musicClips[Random.Range(0, musicClips.Length)];
+        index = Random.Range(0, musicClips.Length);
+        AudioClip musicClip = musicClips[index];
         audioSource.clip = musicClip;
         audioSource.Play();
 
@@ -29,6 +32,16 @@ public class MusicController : MonoBehaviour
         {
             instance = this;
             GameObject.DontDestroyOnLoad(gameObject);
+        }
+    }
+
+    void Update()
+    {
+        if (!audioSource.isPlaying)
+        {
+            index = (index + 1) % musicClips.Length;
+            audioSource.clip = musicClips[index];
+            audioSource.Play();
         }
     }
 

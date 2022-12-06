@@ -11,10 +11,13 @@ public class BallController : MonoBehaviour
     public float hitStrength; // maybe make it so cat can charge up hit (holding its arm all the way back)
 
     public int nextLevel;
+    public AudioSource audioSource;
+    public float volumeScaleFactor;
 
     // Start is called before the first frame update
     void Start()
     {
+        audioSource.spatialBlend = 0.5f; // makes the collision sound more relative to location of ball
     }
 
     // Update is called once per frame
@@ -53,6 +56,13 @@ public class BallController : MonoBehaviour
     //             break;
     //     }
     // }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        // Debug.Log(collision.relativeVelocity.magnitude / volumeScaleFactor); // divided by scaling factor
+        audioSource.volume = collision.relativeVelocity.magnitude / volumeScaleFactor; // divided by scaling factor
+        audioSource.Play();
+    }
 
     private void OnTriggerEnter2D(Collider2D collider)
     {

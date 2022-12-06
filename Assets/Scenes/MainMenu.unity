@@ -1025,6 +1025,14 @@ MonoBehaviour:
   audioSource: {fileID: 1470253516}
   musicClips:
   - {fileID: 8300000, guid: f4cf386d4fb507744a4bc1b7a8d824c5, type: 3}
+  - {fileID: 8300000, guid: 8ce666ebdb57246428117396254ff8b6, type: 3}
+  - {fileID: 8300000, guid: 7b516fe2055d20e43bca19cf861a9293, type: 3}
+  - {fileID: 8300000, guid: 32f067f0790f35841b9b8aaf78a8061b, type: 3}
+  - {fileID: 8300000, guid: 10d2e8f16a215ed4ea37cc95f50007d2, type: 3}
+  - {fileID: 8300000, guid: a15a45123f48b0344afbd66b83453b9b, type: 3}
+  - {fileID: 8300000, guid: 64e214f9815659242b31fe258b279be8, type: 3}
+  - {fileID: 8300000, guid: a92a3066398ddc34f9e6114cfc997c66, type: 3}
+  - {fileID: 8300000, guid: 7733bca79f5757d4ea416f2eae209455, type: 3}
 --- !u!4 &1470253518
 Transform:
   m_ObjectHideFlags: 0
