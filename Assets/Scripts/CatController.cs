@@ -115,7 +115,11 @@ public class CatController : MonoBehaviour
         switch (collision.gameObject.tag)
         {
             case "Ground":
-                isGrounded = true;
+                if (!isGrounded && rb.velocity.y <= 0)
+                {
+                    isGrounded = true;
+                }
+                
                 break;
             case "Mouse":
                 if (collision.gameObject.GetComponent<MouseController>() == null)
