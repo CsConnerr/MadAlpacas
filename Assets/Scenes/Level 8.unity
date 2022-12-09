@@ -3225,7 +3225,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1015096943}
   m_LocalRotation: {x: 0.040269498, y: -0.011902836, z: 0.6901688, w: 0.7224291}
-  m_LocalPosition: {x: -5.21, y: -1.98, z: -0.1}
+  m_LocalPosition: {x: -5.3, y: -2.42, z: -0.11}
   m_LocalScale: {x: 8.796279, y: 8.796279, z: 8.796279}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3382,6 +3382,7 @@ GameObject:
   - component: {fileID: 1050207723}
   - component: {fileID: 1050207725}
   - component: {fileID: 1050207724}
+  - component: {fileID: 1050207726}
   m_Layer: 0
   m_Name: Tree_SpriteSheet_Outlined_7
   m_TagString: Ground
@@ -3415,9 +3416,9 @@ BoxCollider2D:
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_UsedByEffector: 0
+  m_UsedByEffector: 1
   m_UsedByComposite: 0
-  m_Offset: {x: -0.02003698, y: 0.1878463}
+  m_Offset: {x: -0.007851187, y: 0.20307854}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -3428,7 +3429,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.2797229, y: 0.06404877}
+  m_Size: {x: 0.25535136, y: 0.033584297}
   m_EdgeRadius: 0
 --- !u!212 &1050207725
 SpriteRenderer:
@@ -3482,6 +3483,25 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!251 &1050207726
+PlatformEffector2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1050207722}
+  m_Enabled: 1
+  m_UseColliderMask: 1
+  m_ColliderMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RotationalOffset: 0
+  m_UseOneWay: 1
+  m_UseOneWayGrouping: 0
+  m_SurfaceArc: 180
+  m_UseSideFriction: 0
+  m_UseSideBounce: 0
+  m_SideArc: 1
 --- !u!1 &1157912387
 GameObject:
   m_ObjectHideFlags: 0
@@ -3868,6 +3888,7 @@ GameObject:
   - component: {fileID: 1276300607}
   - component: {fileID: 1276300606}
   - component: {fileID: 1276300605}
+  - component: {fileID: 1276300608}
   m_Layer: 0
   m_Name: Tree_SpriteSheet_Outlined_2 (1)
   m_TagString: Ground
@@ -3901,7 +3922,7 @@ BoxCollider2D:
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_UsedByEffector: 0
+  m_UsedByEffector: 1
   m_UsedByComposite: 0
   m_Offset: {x: 0.0097537935, y: 0.45006895}
   m_SpriteTilingProperty:
@@ -3927,7 +3948,7 @@ BoxCollider2D:
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_UsedByEffector: 0
+  m_UsedByEffector: 1
   m_UsedByComposite: 0
   m_Offset: {x: 0.014783815, y: 0.3862279}
   m_SpriteTilingProperty:
@@ -3994,6 +4015,25 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!251 &1276300608
+PlatformEffector2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1276300603}
+  m_Enabled: 1
+  m_UseColliderMask: 1
+  m_ColliderMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RotationalOffset: 0
+  m_UseOneWay: 1
+  m_UseOneWayGrouping: 0
+  m_SurfaceArc: 180
+  m_UseSideFriction: 0
+  m_UseSideBounce: 0
+  m_SideArc: 1
 --- !u!1 &1344803553
 GameObject:
   m_ObjectHideFlags: 0
@@ -5544,6 +5584,7 @@ GameObject:
   - component: {fileID: 1763888201}
   - component: {fileID: 1763888200}
   - component: {fileID: 1763888199}
+  - component: {fileID: 1763888202}
   m_Layer: 0
   m_Name: Tree_SpriteSheet_Outlined_2
   m_TagString: Ground
@@ -5577,7 +5618,7 @@ BoxCollider2D:
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_UsedByEffector: 0
+  m_UsedByEffector: 1
   m_UsedByComposite: 0
   m_Offset: {x: 0.0097537935, y: 0.45006895}
   m_SpriteTilingProperty:
@@ -5603,7 +5644,7 @@ BoxCollider2D:
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_UsedByEffector: 0
+  m_UsedByEffector: 1
   m_UsedByComposite: 0
   m_Offset: {x: 0.014783815, y: 0.3862279}
   m_SpriteTilingProperty:
@@ -5670,6 +5711,25 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!251 &1763888202
+PlatformEffector2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1763888197}
+  m_Enabled: 1
+  m_UseColliderMask: 1
+  m_ColliderMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RotationalOffset: 0
+  m_UseOneWay: 1
+  m_UseOneWayGrouping: 0
+  m_SurfaceArc: 180
+  m_UseSideFriction: 0
+  m_UseSideBounce: 0
+  m_SideArc: 1
 --- !u!1 &1797132965
 GameObject:
   m_ObjectHideFlags: 0
@@ -5933,6 +5993,7 @@ GameObject:
   - component: {fileID: 1858021280}
   - component: {fileID: 1858021282}
   - component: {fileID: 1858021281}
+  - component: {fileID: 1858021283}
   m_Layer: 0
   m_Name: Tree_SpriteSheet_Outlined_0
   m_TagString: Ground
@@ -5966,9 +6027,9 @@ BoxCollider2D:
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_UsedByEffector: 0
+  m_UsedByEffector: 1
   m_UsedByComposite: 0
-  m_Offset: {x: 0.03437607, y: 0.25121033}
+  m_Offset: {x: 0.03437607, y: 0.34594885}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -5979,7 +6040,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.46201143, y: 0.2400747}
+  m_Size: {x: 0.46201143, y: 0.050597608}
   m_EdgeRadius: 0
 --- !u!212 &1858021282
 SpriteRenderer:
@@ -6033,6 +6094,25 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!251 &1858021283
+PlatformEffector2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1858021279}
+  m_Enabled: 1
+  m_UseColliderMask: 1
+  m_ColliderMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RotationalOffset: 0
+  m_UseOneWay: 1
+  m_UseOneWayGrouping: 0
+  m_SurfaceArc: 180
+  m_UseSideFriction: 0
+  m_UseSideBounce: 0
+  m_SideArc: 1
 --- !u!1 &1879605266
 GameObject:
   m_ObjectHideFlags: 0
@@ -6273,6 +6353,7 @@ GameObject:
   - component: {fileID: 1906480810}
   - component: {fileID: 1906480809}
   - component: {fileID: 1906480808}
+  - component: {fileID: 1906480811}
   m_Layer: 0
   m_Name: Tree_SpriteSheet_Outlined_3
   m_TagString: Ground
@@ -6291,9 +6372,9 @@ BoxCollider2D:
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_UsedByEffector: 0
+  m_UsedByEffector: 1
   m_UsedByComposite: 0
-  m_Offset: {x: -0.02014491, y: -0.05371964}
+  m_Offset: {x: -0.02014491, y: 0.517193}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -6304,7 +6385,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.39140147, y: 1.1725607}
+  m_Size: {x: 0.39140147, y: 0.030735373}
   m_EdgeRadius: 0
 --- !u!212 &1906480809
 SpriteRenderer:
@@ -6373,6 +6454,25 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!251 &1906480811
+PlatformEffector2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1906480807}
+  m_Enabled: 1
+  m_UseColliderMask: 1
+  m_ColliderMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RotationalOffset: 0
+  m_UseOneWay: 1
+  m_UseOneWayGrouping: 0
+  m_SurfaceArc: 180
+  m_UseSideFriction: 0
+  m_UseSideBounce: 0
+  m_SideArc: 1
 --- !u!1 &1937963997
 GameObject:
   m_ObjectHideFlags: 0

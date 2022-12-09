@@ -4704,6 +4704,7 @@ GameObject:
   - component: {fileID: 1304725001}
   - component: {fileID: 1304725003}
   - component: {fileID: 1304725002}
+  - component: {fileID: 1304725004}
   m_Layer: 0
   m_Name: Tree_SpriteSheet_Outlined_0
   m_TagString: Ground
@@ -4737,7 +4738,7 @@ BoxCollider2D:
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_UsedByEffector: 0
+  m_UsedByEffector: 1
   m_UsedByComposite: 0
   m_Offset: {x: 0.036186576, y: 0.2636451}
   m_SpriteTilingProperty:
@@ -4804,6 +4805,25 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!251 &1304725004
+PlatformEffector2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1304725000}
+  m_Enabled: 1
+  m_UseColliderMask: 1
+  m_ColliderMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RotationalOffset: 0
+  m_UseOneWay: 1
+  m_UseOneWayGrouping: 0
+  m_SurfaceArc: 180
+  m_UseSideFriction: 0
+  m_UseSideBounce: 0
+  m_SideArc: 1
 --- !u!1 &1323810685
 GameObject:
   m_ObjectHideFlags: 0
