@@ -6,10 +6,11 @@ using UnityEngine.SceneManagement;
 
 public class ButtonTest : MonoBehaviour, ISelectHandler
 {
+    public int level; 
     public void OnSelect(BaseEventData eventData)
     {
-        Debug.Log("Switching to Test Level...");
+        Debug.Log("Switching to Level..." + level.ToString());
 
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene("Level " + level.ToString());
     }
 }
