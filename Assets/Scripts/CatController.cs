@@ -92,10 +92,10 @@ public class CatController : MonoBehaviour
 
 
 
-            if (Input.GetAxisRaw("Vertical") > 0 && rb.velocity.y == 0 && isTouchingGround()) // statement needed because sometimes cat on ground but can't jump because collide but never set isGrounded to true
+            if (Input.GetAxisRaw("Vertical") > 0 && rb.velocity.y == 0 && (isTouchingGround() || isGrounded)) // statement needed because sometimes cat on ground but can't jump because collide but never set isGrounded to true
             {
                 rb.AddForce(jumpForce * Vector2.up, ForceMode2D.Impulse);
-                // isGrounded = false;
+                isGrounded = false;
                 // not grounded
             }
         }
@@ -112,6 +112,7 @@ public class CatController : MonoBehaviour
     {
         Collider2D catCollider = GetComponent<Collider2D>();
         Collider2D groundCollider = ground.GetComponent<Collider2D>();
+        Debug.Log(catCollider.bounds.min.y + ", " + groundCollider.bounds.max.y);
         return catCollider.IsTouching(groundCollider) && catCollider.bounds.min.y >= groundCollider.bounds.max.y; // touching && bottom of cat and top of flour
     }
 
@@ -123,10 +124,10 @@ public class CatController : MonoBehaviour
         {
             case "Ground":
                 ground = collision.gameObject; // used later to check if at least touching
-                // if (!isGrounded && rb.velocity.y <= 0)
-                // {
-                //     isGrounded = true;
-                // }
+                if (!isGrounded && rb.velocity.y <= 0)
+                {
+                    isGrounded = true;
+                }
 
 
                 break;
