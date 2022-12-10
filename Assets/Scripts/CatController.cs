@@ -31,6 +31,7 @@ public class CatController : MonoBehaviour
     public AudioClip[] catHurtMeows;
 
     public AudioSource audioSource;
+    private GameObject ground; // used for jumping
 
     // Start is called before the first frame update
     void Start()
@@ -56,10 +57,12 @@ public class CatController : MonoBehaviour
             if (Input.GetAxis("Horizontal") > 0)
             {
                 v.x = Mathf.Max(v.x, speed); // max because otherwise when knockback it feels weird
+                transform.localScale = new Vector3(50, 50, 50); // sprite stuff
             }
             else if (Input.GetAxis("Horizontal") < 0)
             {
                 v.x = Mathf.Min(v.x, -speed);
+                transform.localScale = new Vector3(-50, 50, 50); // sprite stuff
             }
             else
             {
@@ -69,13 +72,13 @@ public class CatController : MonoBehaviour
             rb.velocity = v; // temp variable needed because can't modify rb.velocity.x directly
 
 
-    anim.SetBool("Run", v.x != 0);  // if v.x is 0, then Run is false, otherwise Run is true
+            anim.SetBool("Run", v.x != 0);  // if v.x is 0, then Run is false, otherwise Run is true
 
-/* if (Input.GetKeyDown("space") && isGrounded)
-            {
-                rb.AddForce(new Vector2(0, jumpForce));
-            }
-            anim.SetTrigger("Jump1"); */
+            /* if (Input.GetKeyDown("space") && isGrounded)
+                        {
+                            rb.AddForce(new Vector2(0, jumpForce));
+                        }
+                        anim.SetTrigger("Jump1"); */
 
             // this is supposed to be for animation transitioj but IDK
             /* if(Input.GetAxis("Horizontal") != 0)
@@ -87,15 +90,12 @@ public class CatController : MonoBehaviour
                         anim.SetBool("Run", false);
                     } */
 
-            if (Input.GetAxis("Horizontal") > 0.01f)
-                transform.localScale = new Vector3(50, 50, 50);
-            else if (Input.GetAxis("Horizontal") < -0.01f)
-                transform.localScale = new Vector3(-50, 50, 50);
 
-            if (Input.GetAxis("Vertical") > 0 && isGrounded)
+
+            if (Input.GetAxisRaw("Vertical") > 0 && rb.velocity.y == 0 && isTouchingGround()) // statement needed because sometimes cat on ground but can't jump because collide but never set isGrounded to true
             {
                 rb.AddForce(jumpForce * Vector2.up, ForceMode2D.Impulse);
-                isGrounded = false;
+                // isGrounded = false;
                 // not grounded
             }
         }
@@ -108,6 +108,13 @@ public class CatController : MonoBehaviour
         audioSource.Play();
     }
 
+    public bool isTouchingGround()
+    {
+        Collider2D catCollider = GetComponent<Collider2D>();
+        Collider2D groundCollider = ground.GetComponent<Collider2D>();
+        return catCollider.IsTouching(groundCollider) && catCollider.bounds.min.y >= groundCollider.bounds.max.y; // touching && bottom of cat and top of flour
+    }
+
 
     void OnCollisionEnter2D(Collision2D collision)
     {
@@ -115,11 +122,13 @@ public class CatController : MonoBehaviour
         switch (collision.gameObject.tag)
         {
             case "Ground":
-                if (!isGrounded && rb.velocity.y <= 0)
-                {
-                    isGrounded = true;
-                }
-                
+                ground = collision.gameObject; // used later to check if at least touching
+                // if (!isGrounded && rb.velocity.y <= 0)
+                // {
+                //     isGrounded = true;
+                // }
+
+
                 break;
             case "Mouse":
                 if (collision.gameObject.GetComponent<MouseController>() == null)
