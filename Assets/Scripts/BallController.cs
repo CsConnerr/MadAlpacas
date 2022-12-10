@@ -14,6 +14,7 @@ public class BallController : MonoBehaviour
     public AudioSource audioSource;
     public AudioSource audioSource2;
     public float volumeScaleFactor;
+    public bool isSoundPlayed;
 
     // Start is called before the first frame update
     void Start()
@@ -66,11 +67,16 @@ public class BallController : MonoBehaviour
         //if it hits the dog or mouse, it will play the sound
 
         if (collision.gameObject.tag == "Dog" || collision.gameObject.tag == "Mouse")
-        {
-            audioSource2.Play();
-        }
-      
-    }
+         {
+          if(isSoundPlayed  = true) 
+          {
+           audioSource2.Play();
+           isSoundPlayed  = true;
+           }
+      }
+      else 
+         audioSource2.Stop();
+  }
 
     private void OnTriggerEnter2D(Collider2D collider)
     {
